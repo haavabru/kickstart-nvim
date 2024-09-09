@@ -343,6 +343,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>fp', function()
         vim.cmd 'cprev'
       end, { desc = 'Prev file in quickfix list' })
+      vim.keymap.set('n', '<leader>tt', function()
+        vim.cmd 'ToggleTerm'
+      end)
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
