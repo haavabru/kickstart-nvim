@@ -8,9 +8,5 @@ return {
     version = '*',
     opts = {},
     priority = 0,
-    init = function()
-      local builtin = require 'toggleterm'
-      builtin.toggle()
-    end,
   },
 }

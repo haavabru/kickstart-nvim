@@ -54,9 +54,6 @@ vim.opt.splitbelow = true
 --vim.opt.list = true
 --vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Disables linewrap
-vim.wo.wrap = false
-
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
@@ -113,12 +110,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd('VimEnter', {
-  desc = 'Auto open Neotree',
-  callback = function()
-    vim.cmd 'Neotree toggle'
-  end,
-})
+--vim.api.nvim_create_autocmd('VimEnter', {
+--  desc = 'Auto open Neotree',
+--  callback = function()
+--    vim.cmd 'Neotree toggle'
+--  end,
+--})
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
