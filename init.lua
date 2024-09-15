@@ -7,6 +7,19 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
+vim.g.clipboard = {
+  name = 'WslClipboard',
+  copy = {
+    ['+'] = 'clip.exe',
+    ['*'] = 'clip.exe',
+  },
+  paste = {
+    ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  },
+  cache = false,
+}
+
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -328,24 +341,31 @@ require('lazy').setup({
         local word = vim.fn.expand '<cword>'
         builtin.grep_string { search = word }
       end)
+
       vim.keymap.set('n', '<leader>pWs', function()
         local word = vim.fn.expand '<cWORD>'
         builtin.grep_string { search = word }
       end)
+
       vim.keymap.set('n', '<leader>ps', function()
         builtin.grep_string { search = vim.fn.input 'Grep > ' }
       end)
+
       vim.keymap.set('n', '<leader>pf', builtin.find_files)
       vim.keymap.set('n', '<leader>gf', builtin.git_files)
       vim.keymap.set('n', '<leader>fn', function()
         vim.cmd 'cnext'
       end, { desc = 'Next file in quickfix list' })
+
       vim.keymap.set('n', '<leader>fp', function()
         vim.cmd 'cprev'
       end, { desc = 'Prev file in quickfix list' })
+
       vim.keymap.set('n', '<leader>tt', function()
         vim.cmd 'ToggleTerm'
       end)
+
+      vim.keymap.set('v', '<leader>y', '"*y')
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
