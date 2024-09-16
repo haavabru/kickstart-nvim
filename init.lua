@@ -130,6 +130,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --  end,
 --})
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'cs' }, -- For C# files
+  callback = function()
+    vim.bo.shiftwidth = 4 -- Indentation size for C#
+    vim.bo.tabstop = 4 -- Tab width for C#
+    vim.bo.softtabstop = 4
+    vim.bo.expandtab = true -- Use spaces instead of tabs
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -570,7 +580,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-
+        csharp_ls = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
